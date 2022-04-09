@@ -2,20 +2,20 @@ package dev.fitzgerald.entities;
 
 public class Student {
 
-    private String studentID;
+    private int studentID;
     private String studentName;
     private String studentRegPeriod;
 
-    public Student(String studentID, String studentName, String studentRegPeriod) {
+    public Student(int studentID, String studentName, String studentRegPeriod) {
         this.studentID = studentID;
         this.studentName = studentName;
         this.studentRegPeriod = studentRegPeriod;
     }
 
-    public String getStudentID() {
+    public int getStudentID() {
         return studentID;
     }
-    public void setStudentID(String studentID) {
+    public void setStudentID(int studentID) {
         this.studentID = studentID;
     }
 

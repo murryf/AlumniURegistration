@@ -19,6 +19,7 @@ public class ClassOfferingDAOPostgresImpl implements ClassOfferingDAO {
             ps.setString(5,offering.getClassDuration());
             ps.setString(6,offering.getRegPeriod());
 
+
             ps.execute();
 
             ResultSet rs = ps.getGeneratedKeys(); // ResultSet a virtual table of results

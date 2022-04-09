@@ -58,5 +58,10 @@ public class ClassesDAOTests {
         ClassOffering offering = offeringDAO.getOfferingByID(testOffering.getClassID());
         Assertions.assertEquals(0,offering.getOpenSeats());
     }
-
+//    @Test
+//    @Order(7)
+//    void delete_Criton(){
+//        Assertions.assertTrue(offeringDAO.deleteClassOfferingID(testOffering.getClassID()));
+//
+//    }
 }
