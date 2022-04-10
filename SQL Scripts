@@ -1,0 +1,47 @@
+create database registrationdb;
+
+create table classes(
+	class_id serial primary key,
+	class_name varchar(50) not null,
+	class_professor varchar(50) not null,
+	reg_period varchar(10) not null,
+	open_seats int check(open_seats >= 0)
+);
+
+create table students(
+	student_id serial primary key,
+	student_name varchar(50) not null,
+	stdnt_pass varchar(10) not null;
+	stu_reg_period varchar(10) not null
+);
+
+create table faculty(
+	faculty_id serial primary key,
+	faculty_name varchar(50) not null,
+	faculty_password varchar(20)
+);
+
+select * from classes;
+select * from students; 
+select * from faculty;
+
+insert into classes values(default, 'Data Structures', 'Leo Tolstoy', 'P4',5);
+insert into classes values(default, 'Python for Beginners', 'Kurt Vonnegut', 'P3',3);
+insert into classes values(default, 'Ethics in Technology', 'Gorge Orwell', 'P2',4);
+insert into classes values(default, 'Programming Practicum', 'Stephen King', 'P1',5);
+
+insert into students values(default,'Wanda Maxemoff','W1tch', 'P3');
+insert into students values(default, 'Tony Stark', 'IRNM4N','P2');
+insert into students values(default, 'Kitty Pride','Mut4nt', 'P4');
+insert into students values(default, 'Sam Wilson','CPTN4m3r', 'P1');
+insert into students values(default, 'Peter Parker','NTM43', 'P1');
+
+insert into faculty values(default, 'Leo Tolstoy', 'Ru5514');
+insert into faculty values(default, 'Kurt Vonnegut', 'S0ItG03s');
+insert into faculty values(default, 'George Orwell', 'MoreEqual');
+insert into faculty values(default, 'Stephen King', 'MaineB0i');
+
+drop table classes;
+drop table students;
+drop table faculty;
+
