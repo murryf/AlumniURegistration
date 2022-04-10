@@ -13,4 +13,6 @@ public interface FacultyDAO {
     //professors can delete offerings
     void deleteClassOfferingID(int id);
 
+    boolean validateFaculty(String name, String pass);
+
 }

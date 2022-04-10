@@ -25,6 +25,12 @@ public class FacultyDAOTests {
     }
 
     @Test
+    void test_password(){
+        boolean valid = facultyDAO.validateFaculty("Margret Atwood", "3d1bl3");
+        Assertions.assertTrue(valid);
+    }
+
+    @Test
     void update_class() {
         ClassOffering update = classDAO.getOfferingByID(1);
         update.setRegPeriod("P1");

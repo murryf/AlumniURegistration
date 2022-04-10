@@ -1,9 +1,16 @@
 package dev.fitzgerald.app;
 
-import java.awt.*;
+import dev.fitzgerald.data.*;
+import dev.fitzgerald.entities.ClassOffering;
 import java.util.Scanner;
 
 public class App {
+
+    private boolean isValidFaculty = false;
+    private boolean isValidStudent = false;
+    public static ClassOfferingDAO classes = new ClassOfferingDAOPostgresImpl();
+    public static FacultyDAO faculty = new FacultyDAOPostgresImpl();
+    public static StudentsDAO student = new StudentsDAOPostgresImpl();
 
     public static void main(String[] args) {
         int entry = 0;
@@ -19,13 +26,13 @@ public class App {
 
             switch (entry) {
                 case 1: {
-                    runFaculty();
+                    runFaculty(io);
                 } break;
                 case 2: {
-                    runStudent();
+                    runStudent(io);
                 } break;
                 case 3: {
-                  runClasses();
+                  runClasses(io);
                 } break;
                 case -1: {
                     System.out.println("Good Bye!");
@@ -36,14 +43,23 @@ public class App {
         }
     }
 
-    public static void runFaculty(){
+    public static void runFaculty(Scanner io){
+        System.out.print("Please enter name: ");
+        String unverifiedFacultyName = io.next();
+        System.out.print("Please enter password: ");
+        String unverifiedPassword = io.next();
+
 
     }
-    public static void runStudent(){
+    public static void runStudent(Scanner io){
+        System.out.print("Please enter name: ");
+        String unverifiedStudentName = io.next();
+        System.out.print("Please enter password: ");
+        String unverifiedPassword = io.next();
+
 
     }
-    public static void runClasses(){
-
+    public static void runClasses(Scanner io){
     }
 
 }
