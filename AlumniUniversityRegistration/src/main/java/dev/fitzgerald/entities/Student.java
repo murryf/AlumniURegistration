@@ -5,10 +5,12 @@ public class Student {
     private int studentID;
     private String studentName;
     private String studentRegPeriod;
+    private String passWord;
 
-    public Student(int studentID, String studentName, String studentRegPeriod) {
+    public Student(int studentID, String studentName,String passWord, String studentRegPeriod) {
         this.studentID = studentID;
         this.studentName = studentName;
+        this.passWord = passWord;
         this.studentRegPeriod = studentRegPeriod;
     }
 
@@ -33,12 +35,17 @@ public class Student {
         this.studentRegPeriod = studentRegPeriod;
     }
 
+    public String getPassWord() {return passWord;}
+
+    public void setPassWord(String passWord) {this.passWord = passWord;}
+
     @Override
     public String toString() {
         return "Student{" +
-                "studentID='" + studentID + '\'' +
+                "studentID=" + studentID +
                 ", studentName='" + studentName + '\'' +
                 ", studentRegPeriod='" + studentRegPeriod + '\'' +
+                ", passWord='" + passWord + '\'' +
                 '}';
     }
 }

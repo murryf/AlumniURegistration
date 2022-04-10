@@ -12,10 +12,11 @@ public class StudentsDAOPostgresImpl implements StudentsDAO{
     public Student createStudent(Student student) {
         try {
             Connection conn = ConnectionUtil.createConnection();
-            String sql = "insert into students values (default,?,?)";
+            String sql = "insert into students values (default,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, student.getStudentName());
-            ps.setString(2,student.getStudentRegPeriod());
+            ps.setString(2,student.getPassWord());
+            ps.setString(3,student.getStudentRegPeriod());
 
             ps.execute();
 
@@ -33,11 +34,23 @@ public class StudentsDAOPostgresImpl implements StudentsDAO{
 
     @Override
     public boolean registerClass(Student student, ClassOffering offering) {
+        if(student.getStudentRegPeriod().equals(offering.getRegPeriod())) {
+            offering.setOpenSeats(offering.getOpenSeats()-1);
+            ClassOfferingDAOPostgresImpl update = new ClassOfferingDAOPostgresImpl();
+            update.updateClassOffering(offering);
+            return true;
+        }
         return false;
     }
 
     @Override
     public boolean dropClass(Student student, ClassOffering offering) {
+        if(student.getStudentRegPeriod().equals(offering.getRegPeriod())){
+            ClassOfferingDAOPostgresImpl update = new ClassOfferingDAOPostgresImpl();
+            offering.setOpenSeats(offering.getOpenSeats()+1);
+            update.updateClassOffering(offering);
+            return true;
+        }
         return false;
     }
 }

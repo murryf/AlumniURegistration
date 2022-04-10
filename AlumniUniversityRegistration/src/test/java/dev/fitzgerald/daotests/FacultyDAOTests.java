@@ -13,6 +13,8 @@ public class FacultyDAOTests {
 
     static FacultyDAO facultyDAO = new FacultyDAOPostgresImpl();
     static Faculty testProfessor = null;
+    static ClassOfferingDAO classDAO = new ClassOfferingDAOPostgresImpl();
+
 
     @Test
     void create_new_faculty(){
@@ -20,6 +22,18 @@ public class FacultyDAOTests {
         Faculty savedNewProfessor = facultyDAO.newProfessor(newProfessor);
         FacultyDAOTests.testProfessor = savedNewProfessor;
         Assertions.assertNotEquals(0, savedNewProfessor.getFacultyId());
+    }
+
+    @Test
+    void update_class() {
+        ClassOffering update = classDAO.getOfferingByID(1);
+        update.setRegPeriod("P1");
+        classDAO.updateClassOffering(update);
+
+    }
+    @Test
+    void delete_class(){
+        facultyDAO.deleteClassOfferingID(2);
     }
 
 }

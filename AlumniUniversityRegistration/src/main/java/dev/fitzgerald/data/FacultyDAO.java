@@ -8,9 +8,9 @@ public interface FacultyDAO {
     Faculty newProfessor(Faculty newFaculty);
 
     //Professors can update offerings
-    boolean updateClassOffering(ClassOffering offering);
+    void updateClassOffering(ClassOffering offering);
 
     //professors can delete offerings
-    boolean deleteClassOfferingID(int id);
+    void deleteClassOfferingID(int id);
 
 }

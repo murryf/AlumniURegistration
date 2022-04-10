@@ -10,14 +10,11 @@ public class ClassOfferingDAOPostgresImpl implements ClassOfferingDAO {
     public ClassOffering createClassOffering(ClassOffering offering) {
         try {
             Connection conn = ConnectionUtil.createConnection();
-            String sql = "insert into classes values (default,?,?,?,?,?,?)";
+            String sql = "insert into classes values (default,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, offering.getClassName());
             ps.setString(2,offering.getClassInstructor());
-            ps.setString(3, offering.getClassDays());
-            ps.setString(4,offering.getClassTime());
-            ps.setString(5,offering.getClassDuration());
-            ps.setString(6,offering.getRegPeriod());
+            ps.setString(3,offering.getRegPeriod());
 
 
             ps.execute();
@@ -48,9 +45,6 @@ public class ClassOfferingDAOPostgresImpl implements ClassOfferingDAO {
             offering.setClassID(rs.getInt("class_id"));
             offering.setClassName(rs.getString("class_name"));
             offering.setClassInstructor(rs.getString("class_professor"));
-            offering.setClassDays(rs.getString("class_days"));
-            offering.setClassTime(rs.getString("class_time"));
-            offering.setClassDuration(rs.getString("class_length"));
             offering.setRegPeriod(rs.getString("reg_period"));
             offering.setOpenSeats(rs.getInt("open_seats"));
 
@@ -77,9 +71,6 @@ public class ClassOfferingDAOPostgresImpl implements ClassOfferingDAO {
             offering.setClassID(rs.getInt("class_id"));
             offering.setClassName(rs.getString("class_name"));
             offering.setClassInstructor(rs.getString("class_professor"));
-            offering.setClassDays(rs.getString("class_days"));
-            offering.setClassTime(rs.getString("class_time"));
-            offering.setClassDuration(rs.getString("class_length"));
             offering.setRegPeriod(rs.getString("reg_period"));
             offering.setOpenSeats(rs.getInt("open_seats"));
             return offering;
@@ -104,9 +95,6 @@ public class ClassOfferingDAOPostgresImpl implements ClassOfferingDAO {
             offering.setClassID(rs.getInt("class_id"));
             offering.setClassName(rs.getString("class_name"));
             offering.setClassInstructor(rs.getString("class_professor"));
-            offering.setClassDays(rs.getString("class_days"));
-            offering.setClassTime(rs.getString("class_time"));
-            offering.setClassDuration(rs.getString("class_length"));
             offering.setRegPeriod(rs.getString("reg_period"));
             offering.setOpenSeats(rs.getInt("open_seats"));
             return offering;
@@ -121,18 +109,13 @@ public class ClassOfferingDAOPostgresImpl implements ClassOfferingDAO {
     public ClassOffering updateClassOffering(ClassOffering offering) {
         try {
             Connection conn = ConnectionUtil.createConnection();
-            String sql = "update classes set class_name = ?, class_professor = ?, " +
-                            " class_days = ?, class_time = ?, class_length = ?, " +
-                            " reg_period = ?, open_seats = ? where class_id = ?";
+            String sql = "update classes set class_name = ?, class_professor = ?, reg_period = ?, open_seats = ? where class_id = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, offering.getClassName());
             ps.setString(2, offering.getClassInstructor());
-            ps.setString(3, offering.getClassDays());
-            ps.setString(4, offering.getClassTime());
-            ps.setString(5, offering.getClassDuration());
-            ps.setString(6,offering.getRegPeriod());
-            ps.setInt(7,offering.getOpenSeats());
-            ps.setInt(8,offering.getClassID());
+            ps.setString(3,offering.getRegPeriod());
+            ps.setInt(4,offering.getOpenSeats());
+            ps.setInt(5,offering.getClassID());
             ps.executeUpdate();
             return  offering;
 

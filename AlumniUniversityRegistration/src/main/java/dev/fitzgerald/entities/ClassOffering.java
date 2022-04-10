@@ -16,14 +16,10 @@ public class ClassOffering {
     public ClassOffering() {}
 
     //please use this constructor
-    public ClassOffering(int classID, String className, String classInstructor, String classDays,
-                         String classTime, String classDuration, String regPeriod) {
+    public ClassOffering(int classID, String className, String classInstructor, String regPeriod) {
         this.classID = classID;
         this.className = className;
         this.classInstructor = classInstructor;
-        this.classDays = classDays;
-        this.classTime = classTime;
-        this.classDuration = classDuration;
         this.regPeriod = regPeriod;
         this.openSeats = 35;
     }
@@ -50,27 +46,6 @@ public class ClassOffering {
         this.classInstructor = classInstructor;
     }
 
-    public String getClassDays() {
-        return classDays;
-    }
-    public void setClassDays(String classDays) {
-        this.classDays = classDays;
-    }
-
-    public String getClassTime() {
-        return classTime;
-    }
-    public void setClassTime(String classTime) {
-        this.classTime = classTime;
-    }
-
-    public String getClassDuration() {
-        return this.classDuration;
-    }
-    public void setClassDuration(String classDuration) {
-        this.classDuration = classDuration;
-    }
-
     public String getRegPeriod(){return this.regPeriod;}
     public void setRegPeriod(String regPeriod){this.regPeriod=regPeriod;}
 
@@ -83,9 +58,6 @@ public class ClassOffering {
                 "classID=" + classID +
                 ", className='" + className + '\'' +
                 ", classInstructor='" + classInstructor + '\'' +
-                ", classDays='" + classDays + '\'' +
-                ", classTime='" + classTime + '\'' +
-                ", classDuration='" + classDuration + '\'' +
                 ", regPeriod='" + regPeriod + '\'' +
                 '}';
     }

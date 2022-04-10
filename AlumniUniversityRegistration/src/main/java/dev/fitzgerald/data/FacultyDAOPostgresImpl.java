@@ -32,12 +32,15 @@ public class FacultyDAOPostgresImpl implements FacultyDAO{
     }
 
     @Override
-    public boolean updateClassOffering(ClassOffering offering) {
-        return false;
+    public void updateClassOffering(ClassOffering offering) {
+        ClassOfferingDAOPostgresImpl update = new ClassOfferingDAOPostgresImpl();
+        ClassOffering offer = update.updateClassOffering(offering);
+
     }
 
     @Override
-    public boolean deleteClassOfferingID(int id) {
-        return false;
+    public void deleteClassOfferingID(int id) {
+        ClassOfferingDAOPostgresImpl del = new ClassOfferingDAOPostgresImpl();
+        del.deleteClassOfferingID(id);
     }
 }
