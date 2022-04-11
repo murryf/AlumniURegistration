@@ -110,13 +110,14 @@ public class App {
         isValidStudent = student.validateStudent(unverifiedStudentName, unverifiedPassword);
         if (isValidStudent) {
             int choice = 0;
+            System.out.println("Welcome, " + unverifiedStudentName);
+            ArrayList<String> classList = new ArrayList<String>();
             while (choice != -1) {
-                System.out.println("Welcome, " + unverifiedStudentName);
                 System.out.println("Please choose from the following");
                 System.out.println("1) Register new student\n2) View available classes\n3) Register for class"
-                        +"\n4) Drop Class\n5) View Registered classes\n-1) Log Out");
+                        +"\n4) Drop Class\n5) View Registered classes\n6) Save Registered Classes\n-1) Log Out");
                 choice = io.nextInt();
-                StudentsDAO students = new StudentsDAOPostgresImpl();
+                StudentsDAOPostgresImpl students = new StudentsDAOPostgresImpl();
                 ClassOfferingDAO classes = new ClassOfferingDAOPostgresImpl();
 
                 switch (choice){
@@ -140,9 +141,12 @@ public class App {
                     case 3: {
                         System.out.println("Please enter student name: ");
                         Student theStudent = students.getStudent(io.next());
+                       // System.out.println(theStudent.getStudentRegPeriod());
                         System.out.println("Enter class number: ");
                         ClassOffering theClass = classes.getOfferingByID(io.nextInt());
+                       // System.out.println(theClass.getRegPeriod());
                         if(student.registerClass(theStudent,theClass)){
+                            classList.add(theClass.getClassName());
                             System.out.println("Register successful");
                         } else {
                             System.out.println("Failed to register for class");
@@ -155,6 +159,14 @@ public class App {
                         System.out.println("Enter class number: ");
                         ClassOffering theClass = classes.getOfferingByID(io.nextInt());
                         if(student.dropClass(theStudent, theClass)){
+                            for(int i = 0; i < classList.size(); i++){
+                                if(classList.get(i).equals(theClass.getClassName())){
+                                    classList.remove(i);
+                                    classList.add("null");
+                                }
+                            }
+                            theClass.setOpenSeats(theClass.getOpenSeats()+1);
+                            classes.updateClassOffering(theClass);
                             System.out.println("Dropped class successful");
                         } else {
                             System.out.println("Failed to drop class");
@@ -162,7 +174,12 @@ public class App {
 
                     }break;
                     case 5: {
-
+                            for(int i = 0; i < classList.size(); i++){
+                                System.out.println(classList.get(i));
+                        }
+                    }break;
+                    case 6: {
+                        students.saveClasses(student.getStudent(unverifiedStudentName));
                     }break;
                     case -1: {
                         isValidStudent = false;

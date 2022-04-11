@@ -4,7 +4,6 @@ import dev.fitzgerald.entities.ClassOffering;
 import dev.fitzgerald.entities.Student;
 import dev.fitzgerald.utilities.ArrayList;
 import dev.fitzgerald.utilities.ConnectionUtil;
-import dev.fitzgerald.utilities.List;
 
 import java.sql.*;
 
@@ -14,7 +13,7 @@ public class StudentsDAOPostgresImpl implements StudentsDAO{
     public Student createStudent(Student student) {
         try {
             Connection conn = ConnectionUtil.createConnection();
-            String sql = "insert into students values (default,?,?,?,default,default,default)";
+            String sql = "insert into students values (default,?,?,?,null,null,null)";
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, student.getStudentName());
             ps.setString(2,student.getPassWord());
@@ -111,13 +110,28 @@ public class StudentsDAOPostgresImpl implements StudentsDAO{
             offering.setOpenSeats(offering.getOpenSeats()-1);
             ClassOfferingDAOPostgresImpl update = new ClassOfferingDAOPostgresImpl();
             update.updateClassOffering(offering);
-
-            //add to registration for student
             return true;
         }
         return false;
     }
 
+    public boolean saveClasses(Student student){
+        try {
+            Connection conn = ConnectionUtil.createConnection();
+            String sql = "update students set stu_class_1 = ?,stu_class_2 = ?, stu_class_3 = ? where student_id = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, student.getClasses()[0]);
+            ps.setString(2, student.getClasses()[1]);
+            ps.setString(3, student.getClasses()[2]);
+            ps.setInt(4,student.getStudentID());
+            ps.executeUpdate();
+
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
     @Override
     public boolean dropClass(Student student, ClassOffering offering) {
         if(student.getStudentRegPeriod().equals(offering.getRegPeriod())){

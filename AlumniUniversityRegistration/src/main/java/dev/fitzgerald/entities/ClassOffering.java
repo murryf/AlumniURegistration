@@ -10,18 +10,19 @@ public class ClassOffering {
     private String classTime;
     private String classDuration;
     private String regPeriod;
-    private int openSeats;
+    private int openSeats = 35;
 
     //default constructor
-    public ClassOffering() {}
+    public ClassOffering() {
+    }
 
     //please use this constructor
-    public ClassOffering(int classID, String className, String classInstructor, String regPeriod) {
+    public ClassOffering(int classID, String className, String classInstructor, String regPeriod, int openSeats) {
         this.classID = classID;
         this.className = className;
         this.classInstructor = classInstructor;
         this.regPeriod = regPeriod;
-        this.openSeats = 35;
+        this.openSeats = openSeats;
     }
 
     //Getters and setters grouped by order of fields
@@ -57,6 +58,7 @@ public class ClassOffering {
         return "classID = " + classID +
                 ", className = '" + className + '\'' +
                 ", classInstructor = '" + classInstructor + '\'' +
-                ", regPeriod = '" + regPeriod + '\'';
+                ", regPeriod = '" + regPeriod + '\'' +
+                ", Seats = " + openSeats + '\'';
     }
 }

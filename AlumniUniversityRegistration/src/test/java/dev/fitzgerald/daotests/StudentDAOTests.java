@@ -13,7 +13,7 @@ public class StudentDAOTests {
 
     static StudentsDAO studentDAO = new StudentsDAOPostgresImpl();
     static Student testStudent = null;
-    static ClassOffering testClass = new ClassOffering(0,"Algorithms", "Edgar Allen Poe", "P3");
+    static ClassOffering testClass = new ClassOffering(0,"Algorithms", "Edgar Allen Poe", "P3",25);
     static ClassOfferingDAO classDAO = new ClassOfferingDAOPostgresImpl();
     @Test
     void create_new_student(){

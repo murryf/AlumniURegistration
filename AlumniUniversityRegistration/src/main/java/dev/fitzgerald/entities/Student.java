@@ -6,6 +6,7 @@ public class Student {
     private String studentName;
     private String studentRegPeriod;
     private String passWord;
+    private String[] classes = {null,null,null};
 
     public Student(int studentID, String studentName,String passWord, String studentRegPeriod) {
         this.studentID = studentID;
@@ -36,8 +37,15 @@ public class Student {
     }
 
     public String getPassWord() {return passWord;}
-
     public void setPassWord(String passWord) {this.passWord = passWord;}
+
+    public String[] getClasses() {
+        return classes;
+    }
+
+    public void setClasses(String[] classes) {
+        this.classes = classes;
+    }
 
     @Override
     public String toString() {

@@ -15,7 +15,7 @@ public class ClassesDAOTests {
     @Test
     @Order(1)
     void create_class_offering() {
-        ClassOffering offering =  new ClassOffering(5, "Python for AI", "Michael Criton","P4");
+        ClassOffering offering =  new ClassOffering(5, "Python for AI", "Michael Criton","P4", 25);
         ClassOffering savedOffering = offeringDAO.createClassOffering(offering);
         ClassesDAOTests.testOffering = savedOffering;
         Assertions.assertNotEquals(0,savedOffering.getClassID());

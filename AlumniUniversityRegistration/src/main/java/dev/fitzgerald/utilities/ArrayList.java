@@ -25,6 +25,15 @@ public class ArrayList<T> implements List<T>{
 
     }
 
+    public void remove(int i){
+        Object oldValue = this.elements[i];
+        int numMoved = this.size() - i - 1;
+        if(numMoved >0){
+            System.arraycopy(this.elements, i+1, this.elements, i, numMoved);
+        }
+        elements[--this.currentIndex] = null;
+    }
+
     @Override
     public T get(int index) {
         return (T) this.elements[index];

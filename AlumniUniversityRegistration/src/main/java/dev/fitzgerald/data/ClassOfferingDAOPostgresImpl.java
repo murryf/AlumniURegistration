@@ -10,11 +10,12 @@ public class ClassOfferingDAOPostgresImpl implements ClassOfferingDAO {
     public ClassOffering createClassOffering(ClassOffering offering) {
         try {
             Connection conn = ConnectionUtil.createConnection();
-            String sql = "insert into classes values (default,?,?,?)";
+            String sql = "insert into classes values (default,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, offering.getClassName());
             ps.setString(2,offering.getClassInstructor());
             ps.setString(3,offering.getRegPeriod());
+            ps.setInt(4,offering.getOpenSeats());
 
 
             ps.execute();
