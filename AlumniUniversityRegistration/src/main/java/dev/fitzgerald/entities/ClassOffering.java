@@ -54,11 +54,9 @@ public class ClassOffering {
 
     @Override
     public String toString() {
-        return "classOffering{" +
-                "classID=" + classID +
-                ", className='" + className + '\'' +
-                ", classInstructor='" + classInstructor + '\'' +
-                ", regPeriod='" + regPeriod + '\'' +
-                '}';
+        return "classID = " + classID +
+                ", className = '" + className + '\'' +
+                ", classInstructor = '" + classInstructor + '\'' +
+                ", regPeriod = '" + regPeriod + '\'';
     }
 }

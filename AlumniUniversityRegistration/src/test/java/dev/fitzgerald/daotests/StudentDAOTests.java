@@ -30,6 +30,12 @@ public class StudentDAOTests {
 
     }
     @Test
+    void validate_Test(){
+        boolean valid = studentDAO.validateStudent("Pryde", "Mut4nt");
+        Assertions.assertTrue(valid);
+    }
+
+    @Test
     void drop_class(){
         Assertions.assertTrue(studentDAO.dropClass(testStudent,classDAO.getOfferingByID(testClass.getClassID())));
     }

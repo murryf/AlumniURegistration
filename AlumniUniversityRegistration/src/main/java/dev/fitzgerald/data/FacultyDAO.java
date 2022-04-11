@@ -15,4 +15,6 @@ public interface FacultyDAO {
 
     boolean validateFaculty(String name, String pass);
 
+    void addClassOffering(ClassOffering offer);
+
 }

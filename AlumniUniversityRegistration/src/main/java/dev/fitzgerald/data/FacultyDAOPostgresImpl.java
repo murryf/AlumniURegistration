@@ -47,22 +47,27 @@ public class FacultyDAOPostgresImpl implements FacultyDAO{
     public boolean validateFaculty(String name, String pass){
         try {
             Connection conn = ConnectionUtil.createConnection();
-            String sql = "select * from faculty where faculty_name = ?";
-            PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            String sql = "select faculty_password from faculty where faculty_name = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, name);
-            System.out.println(ps.toString());
-            ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
-            ResultSet rs = ps.getGeneratedKeys(); // ResultSet a virtual table of results
             rs.next();// move to the first record of the result set
-            String generatedPass = rs.getString("faculty_password");
-            if(generatedPass.equals(pass)){
+
+            if(rs.getString(1).equals(pass)){
                 return true;
             }
+            System.out.println("Failed to validate faculty member");
             return false;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public void addClassOffering(ClassOffering offer) {
+        ClassOfferingDAOPostgresImpl offering = new ClassOfferingDAOPostgresImpl();
+        offering.createClassOffering(offer);
     }
 }
