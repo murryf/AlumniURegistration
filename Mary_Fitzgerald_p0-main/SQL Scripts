@@ -1,0 +1,50 @@
+create database registrationdb;
+
+create table classes(
+	class_id serial primary key,
+	class_name varchar(50) not null,
+	class_professor varchar(50) not null,
+	reg_period varchar(10) not null,
+	open_seats int check(open_seats >= 0)
+);
+
+create table students(
+	student_id serial primary key,
+	student_name varchar(50) not null,
+	stdnt_pass varchar(10) not null,
+	stu_reg_period varchar(10) not null,
+	stu_class_1 varchar(30),
+	stu_class_2 varchar(30),
+	stu_class_3 varchar(30)
+);
+
+create table faculty(
+	faculty_id serial primary key,
+	faculty_name varchar(50) not null,
+	faculty_password varchar(20)
+);
+
+select * from classes;
+select * from students; 
+select * from faculty;
+
+insert into classes values(default, 'Data_Structures', 'Tolstoy', 'P4',5);
+insert into classes values(default, 'Python_for_Beginners', 'Vonnegut', 'P3',3);
+insert into classes values(default, 'Ethics_in_Technology', 'Orwell', 'P2',4);
+insert into classes values(default, 'Programming_Practicum', 'King', 'P1',5);
+
+insert into students values(default,'Maxemoff','W1tch', 'P3','','','');
+insert into students values(default, 'Stark', 'IRNM4N','P2','','','');
+insert into students values(default, 'Pryde','Mut4nt', 'P4','','','');
+insert into students values(default, 'Wilson','CPTN4m3r', 'P1','','','');
+insert into students values(default, 'Parker','NTM43', 'P1','','','');
+
+insert into faculty values(default, 'Tolstoy', 'Ru5514');
+insert into faculty values(default, 'Vonnegut', 'S0ItG03s');
+insert into faculty values(default, 'Orwell', 'MoreEqual');
+insert into faculty values(default, 'King', 'MaineB0i');
+
+drop table classes;
+drop table students;
+drop table faculty;
+
