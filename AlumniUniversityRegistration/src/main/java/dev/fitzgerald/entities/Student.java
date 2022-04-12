@@ -6,7 +6,7 @@ public class Student {
     private String studentName;
     private String studentRegPeriod;
     private String passWord;
-    private String[] classes = {null,null,null};
+    protected String[] classes = {null,null,null};
 
     public Student(int studentID, String studentName,String passWord, String studentRegPeriod) {
         this.studentID = studentID;

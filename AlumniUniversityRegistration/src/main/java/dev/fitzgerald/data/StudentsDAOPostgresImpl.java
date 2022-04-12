@@ -110,6 +110,15 @@ public class StudentsDAOPostgresImpl implements StudentsDAO{
             offering.setOpenSeats(offering.getOpenSeats()-1);
             ClassOfferingDAOPostgresImpl update = new ClassOfferingDAOPostgresImpl();
             update.updateClassOffering(offering);
+            String[] work = new String[3];
+
+            for(int i = 0; i < 3; i++){
+                if(student.getClasses()[i] == null){
+                    work[i] = offering.getClassName();
+                    i = 3;
+                }
+            }
+            student.setClasses(work);
             return true;
         }
         return false;
@@ -140,8 +149,33 @@ public class StudentsDAOPostgresImpl implements StudentsDAO{
             offering.setOpenSeats(offering.getOpenSeats()+1);
             update.updateClassOffering(offering);
 
-            return true;
+            String[] work = new String[3];
+
+            for(int i = 0; i < 3; i++){
+                if(offering.getClassName() == student.getClasses()[i]){
+                } else {
+                    work[i] = student.getClasses()[i];
+                }
+            }
+            student.setClasses(work);
+            try {
+                Connection conn = ConnectionUtil.createConnection();
+                String sql = "update students set stu_class_1 = ?,stu_class_2 = ?, stu_class_3 = ? where student_id = ?";
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setString(1, student.getClasses()[0]);
+                ps.setString(2, student.getClasses()[1]);
+                ps.setString(3, student.getClasses()[2]);
+                ps.setInt(4,student.getStudentID());
+                ps.executeUpdate();
+
+                System.out.println("Class dropped");
+                return true;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
         }
+        System.out.println("Failed to drop class");
         return false;
     }
 }
